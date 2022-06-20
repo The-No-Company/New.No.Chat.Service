@@ -1,0 +1,67 @@
+version: '3.7'
+  
+services:
+  no_chat:
+    image: no_chat
+    container_name: no_chat
+    restart: always
+    tty: true
+    build:
+      context: .
+    environment:
+      - GIN_MODE=debug
+      - PORT=8000
+    depends_on:
+      - no_chat_mysql
+    volumes:
+      - .:/var/www
+    networks:
+      - default_host
+    ports:
+      - "8000:8000"
+
+  no_chat_rabbitmq:
+    image: rabbitmq:3.8
+    container_name: no_chat_rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=nochat
+      - RABBITMQ_DEFAULT_PASS=z922ilJBOBMo
+    ports:
+      - "54370:5672"
+    networks:
+      - default_host
+
+  no_chat_mysql:
+    image: mariadb:10.5.4
+    container_name: no_chat_mysql
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: z922ilJBOBMo
+      MYSQL_DATABASE: nochat
+      MYSQL_USER: root
+      MYSQL_PASSWORD: z922ilJBOBMo
+    networks:
+      - default_host
+    ports:
+      - "3306:3306"
+
+  no_chat_phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1.3
+    container_name: no_chat_phpmyadmin
+    restart: always
+    tty: true
+    environment:
+      PMA_HOST: no_chat_mysql
+    networks:
+      - default_host
+    ports:
+      - "8082:80"
+
+networks:
+  default_host:
+    driver: bridge
+    name: default_host
