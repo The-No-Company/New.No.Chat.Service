@@ -2,13 +2,17 @@ package Routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 	"nochat/app/src/Controller"
 )
 
 func SetupRouter() *gin.Engine {
-	r := gin.Default()
+	route := gin.Default()
 
-	group := r.Group("/contact")
+	route.LoadHTMLGlob("public/**")
+	route.StaticFile("/favicon.ico", "./public/favicon.ico")
+
+	group := route.Group("/contact")
 	{
 		group.GET("upload", Controller.Upload)
 		group.GET("search", Controller.Search)
@@ -17,5 +21,9 @@ func SetupRouter() *gin.Engine {
 		group.GET("last", Controller.Last)
 	}
 
-	return r
+	route.GET("/", func(context *gin.Context) {
+		context.HTML(http.StatusAccepted, "index.html", nil)
+	})
+
+	return route
 }
