@@ -22,13 +22,11 @@ func Search(c *gin.Context) {
 		return
 	}
 
-	//c.JSON(http.StatusOK, gin.H{"status": "ok"})
-
 	fmt.Println(Helper.FormattingPhone(filter.Phone))
 }
 
 func SearchAll(c *gin.Context) {
-	//c.JSON(http.StatusOK, gin.H{"searchAll": "searchAll"})
+	c.JSON(http.StatusOK, gin.H{"searchAll": "searchAll"})
 }
 
 func Count(c *gin.Context) {
