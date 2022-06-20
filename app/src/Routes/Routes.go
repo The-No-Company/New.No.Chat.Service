@@ -4,13 +4,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"nochat/app/src/Controller"
+	"nochat/app/src/Static"
 )
 
 func SetupRouter() *gin.Engine {
 	route := gin.Default()
 
 	route.LoadHTMLGlob("public/**")
-	route.StaticFile("/favicon.ico", "./public/favicon.ico")
+
+	for _, value := range Static.GetStyles() {
+		route.StaticFile(value[0], value[1])
+	}
 
 	group := route.Group("/contact")
 	{
