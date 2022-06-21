@@ -41,7 +41,7 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: koregin
+      MYSQL_DATABASE: nochat
       MYSQL_USER: root
       MYSQL_PASSWORD: 12345678
     networks:
