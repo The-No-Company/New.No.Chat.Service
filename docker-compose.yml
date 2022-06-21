@@ -25,8 +25,8 @@ services:
     container_name: no_chat_rabbitmq
     restart: always
     environment:
-      - RABBITMQ_DEFAULT_USER=nochat
-      - RABBITMQ_DEFAULT_PASS=z922ilJBOBMo
+      - RABBITMQ_DEFAULT_USER=koregin
+      - RABBITMQ_DEFAULT_PASS=12345678
     ports:
       - "54370:5672"
     networks:
@@ -40,10 +40,10 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: z922ilJBOBMo
-      MYSQL_DATABASE: nochat
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: koregin
       MYSQL_USER: root
-      MYSQL_PASSWORD: z922ilJBOBMo
+      MYSQL_PASSWORD: 12345678
     networks:
       - default_host
     ports:
