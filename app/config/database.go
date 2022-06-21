@@ -20,7 +20,7 @@ func BuildDBConfig() *DBConfig {
 		Host:     "no_chat_mysql",
 		Port:     3306,
 		User:     "root",
-		Password: "z922ilJBOBMo",
+		Password: "12345678",
 		DBName:   "nochat",
 	}
 
